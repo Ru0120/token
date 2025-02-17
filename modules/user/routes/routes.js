@@ -21,13 +21,9 @@ userRoutes.get("/profile", async (req, res) => {
 
   const { userId: myid } = req.user;
 
-  try {
-    const user = await Users.findOne({ _id: { $eq: userid ? userid : myid } });
+  const user = await Users.findOne({ _id: { $eq: userid ? userid : myid } });
 
-    res.send(user);
-  } catch (e) {
-    res.send("id taarsangui");
-  }
+  res.send(user);
 });
 
 userRoutes.put("/update", async (req, res) => {

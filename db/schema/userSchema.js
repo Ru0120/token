@@ -28,5 +28,5 @@ export const userShema = new schema(
       required: true,
     },
   },
-  { collection: "users" }
+  { collection: "users2" }
 );

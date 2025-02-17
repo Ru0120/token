@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 
 import { userRoutes } from "../modules/user/routes/routes.js";
 import { authRoutes } from "../modules/auth/routes/routes.js";
+import { blogRoutes } from "../modules/blog/routes.js";
 dotenv.config();
 
 class Person {
@@ -52,15 +53,19 @@ const authMiddleware = (req, res, next) => {
 };
 app.use("/user", authMiddleware);
 
-app.use("/user", userRoutes);
+app.use("/auth", authRoutes);
 
-app.use("/user", authRoutes);
+app.use("/user", userRoutes);
 
 app.use("/data", authMiddleware);
 
+app.use("/blog", authMiddleware);
+
+app.use("/blog", blogRoutes);
+
 app.get("/data/get-data", (req, res) => {
   const { user } = req;
-
+  console.log(user);
   const data = [{ name: "1" }];
   res.send(data);
 });
