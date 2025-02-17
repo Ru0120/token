@@ -1,0 +1,31 @@
+{
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.10.1"
+  },
+  "name": "token",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000t\u0000o\u0000k\u0000e\u0000n\u0000\r\u0000 \u0000",
+  "main": "index.js",
+  "type":"module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+"start":"nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ru0120/token.git"
+  },
+  "author": "Ru",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ru0120/token/issues"
+  },
+  "homepage": "https://github.com/Ru0120/token#readme"
+}
