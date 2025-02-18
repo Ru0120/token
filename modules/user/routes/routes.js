@@ -17,25 +17,52 @@ userRoutes.get("/get-token", async (req, res) => {
 });
 
 userRoutes.get("/profile", async (req, res) => {
-  const { userid } = req.query;
+  const { userId } = req.user;
 
-  const { userId: myid } = req.user;
+  try {
+    const user = await Users.findOne({ _id: { $eq: userId } });
 
-  const user = await Users.findOne({ _id: { $eq: userid ? userid : myid } });
-
-  res.send(user);
+    res.send(user);
+  } catch (e) {
+    res.send(e.message);
+  }
 });
 
-userRoutes.put("/update", async (req, res) => {
-  const { userName } = req.query;
+userRoutes.get("/profile/:userId", async (req, res) => {
+  const { userId } = req.params;
+
+  try {
+    const user = await Users.findOne({ _id: { $eq: userId } });
+
+    res.send(user);
+  } catch (e) {
+    res.send(e.message);
+  }
+});
+
+userRoutes.get("/others", async (req, res) => {
+  const { userId } = req.user;
+
+  try {
+    const user = await Users.find({ _id: { $ne: userId } });
+
+    res.send(user);
+  } catch (e) {
+    res.send(e.message);
+  }
+});
+
+userRoutes.put("/", async (req, res) => {
+  const { username, email } = req.body;
   const { userId: myid } = req.user;
 
   try {
     const user = await Users.findOneAndUpdate(
       { _id: { $eq: myid } },
-      { $set: { username: userName } },
+      { $set: { username: username, email } },
       { new: true }
     );
+
     res.send(user);
   } catch (e) {
     res.send("ooriin haygaar newterne vv");

@@ -51,17 +51,12 @@ const authMiddleware = (req, res, next) => {
     res.send("Auth token invalid");
   }
 };
-app.use("/user", authMiddleware);
 
-app.use("/auth", authRoutes);
+app.use("/", authRoutes);
 
-app.use("/user", userRoutes);
+app.use("/user", authMiddleware, userRoutes);
 
-app.use("/data", authMiddleware);
-
-app.use("/blog", authMiddleware);
-
-app.use("/blog", blogRoutes);
+app.use("/blogs", authMiddleware, blogRoutes);
 
 app.get("/data/get-data", (req, res) => {
   const { user } = req;

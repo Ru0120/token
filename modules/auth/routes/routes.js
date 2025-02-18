@@ -18,6 +18,7 @@ authRoutes.post("/register", async (req, res) => {
 });
 
 authRoutes.post("/login", async (req, res) => {
+  console.log("---");
   const { password, email } = req.body;
 
   try {
